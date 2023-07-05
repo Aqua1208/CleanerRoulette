@@ -1,0 +1,16 @@
+= link_to "Roulette", cleaners_path, class: "btn btn-info"
+
+table.table
+  tr
+    th 番号
+    th 場所
+    th 氏名
+  - unless session[:cleaners].nil?
+    - session[:cleaners].each.with_index(1) do |cleaner, number|
+      tr
+        td = number
+        td = Place.find(number).name
+        td = cleaner
+
+= render 'user'
+= link_to "新規作成", new_user_path

@@ -1,0 +1,5 @@
+= render "form", user: @user
+
+div.flex
+  = link_to "利用者一覧", users_path, class: "btn btn-success"
+  = button_to "削除", user_path, method: :delete, class: "btn btn-danger"

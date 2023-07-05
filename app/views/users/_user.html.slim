@@ -1,0 +1,17 @@
+  table.table
+    thead 
+      tr
+        th
+        th 氏名
+        th 出席
+        th 
+      - @users.each do |user|
+        tr
+          td = user.id
+          td = user.name
+          td.flex
+            - if user.attend
+              = button_to "出席", attend_path, { params: {id: user.id} ,class: "btn btn-primary" }
+            - else
+              = button_to "欠席", attend_path, { params: {id: user.id}, class: "btn btn-danger" }
+            = link_to "編集", edit_user_path(user), class: 'btn btn-secondary'
