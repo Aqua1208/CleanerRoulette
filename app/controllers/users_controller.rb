@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def api
-    @cleaners = session[:cleaners]
-    render :json => @cleaners
+    places = Place.pluck(:name)
+    cleaners = session[:cleaners]
+
+    render :json => { places: places, cleaners: cleaners }
   end
 
-  def cleaners
-    place = Place.all
-
+  def roulette
     attendee = User.where(attend: true).pluck(:name)
     session[:cleaners] = attendee.to_a.sample(6)
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to users_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }

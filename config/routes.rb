@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
 
   get 'api' => 'users#api'
-  get 'cleaners' => 'users#cleaners'
+  get 'roulette' => 'users#roulette'
   post 'attend' => 'users#attend'
 end
