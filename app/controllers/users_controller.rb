@@ -28,6 +28,9 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @logs = Log.all
+
+    @AllFrequency = @logs.where(user_id: @user.id).count
   end
 
   # GET /users/new

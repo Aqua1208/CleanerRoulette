@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_043138) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_060939) do
   create_table "cleaners", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.date "date"
+    t.integer "place_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_logs_on_place_id"
+    t.index ["user_id"], name: "index_logs_on_user_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -29,4 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_043138) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "logs", "places"
+  add_foreign_key "logs", "users"
 end

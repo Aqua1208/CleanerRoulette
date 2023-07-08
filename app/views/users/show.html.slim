@@ -1,0 +1,31 @@
+table.table
+  tr 
+    th 通算掃除回数
+    th 事業所全体
+    th センターテーブル＋丸テーブル
+    th ロッカー
+    th 水やり
+    th ディスプレイ
+    th 面談室１，２
+  tr
+    td = @AllFrequency
+    - 6.times do |i|
+      td = @logs.where(user_id: @user.id, place_id: i+1).count
+  tr 
+    td
+    - 6.times do |i|
+      td = (@logs.where(user_id: @user.id, place_id: i+1).count.to_f/@AllFrequency.to_f*100).round(1)
+      
+table.table
+  tr
+    th 日時
+    th 場所
+  - @logs.where(user_id: @user.id).each do |log|
+    tr
+      td = log.date 
+      td = Place.find(log.place_id).name
+
+div.flex
+  = link_to "編集", edit_user_path(@user), class: "btn btn-success"
+  = button_to "削除", @user, method: :delete, class: "btn btn-danger"
+  = link_to "戻る", users_path, class: "btn btn-primary" 

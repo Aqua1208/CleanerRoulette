@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   get 'api' => 'users#api'
   get 'roulette' => 'users#roulette'
   post 'attend' => 'users#attend'
+
+  post 'logs/create' => "logs#create"
+  resources :logs 
+
 end

@@ -8,7 +8,7 @@
       - @users.each do |user|
         tr
           td = user.id
-          td = user.name
+          td = link_to user.name, user_path(user)
           td.flex
             - if user.attend
               = button_to "出席", attend_path, { params: {id: user.id} ,class: "btn btn-primary" }
