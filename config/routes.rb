@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post 'logs/create' => "logs#create"
   resources :logs 
 
+  resources :places, only: [:show]
+
 end

@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_060939) do
-  create_table "cleaners", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_022452) do
+  create_table "counts", force: :cascade do |t|
+    t.integer "place_id", null: false
+    t.integer "user_id", null: false
+    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_counts_on_place_id"
+    t.index ["user_id"], name: "index_counts_on_user_id"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -39,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_060939) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "counts", "places"
+  add_foreign_key "counts", "users"
   add_foreign_key "logs", "places"
   add_foreign_key "logs", "users"
 end

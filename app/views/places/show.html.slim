@@ -1,0 +1,21 @@
+h1 = Place.find(params[:id]).name
+
+table.table
+  tr 
+    th 氏名
+    th 回数
+    th 割合
+  tr 
+    td 全体
+    - countAll = Count.where(place_id: params[:id]).sum(:count)
+    td = countAll
+    td = countAll.to_f / countAll.to_f * 100
+  - @users.each do |user|
+    tr
+      td = user.name
+      - count = Count.find_by(user_id: user.id, place_id: params[:id])
+      - unless count.nil?
+        td = count.count
+        td = (count.count.to_f / countAll.to_f * 100).round(1)
+      - else 
+        td colspan="2"

@@ -1,6 +1,17 @@
+div
+  h1 = User.find(params[:id]).name
+  h3
+    - if @AllFrequency < 5
+      p Bronze Cleaner
+    - elsif @AllFrequency < 10
+      p Silver Cleaner
+    - elsif @AllFrequency < 20
+      p Gold Cleaner
+
 table.table
   tr 
-    th 通算掃除回数
+    th
+    th 通算
     th 事業所全体
     th センターテーブル＋丸テーブル
     th ロッカー
@@ -8,14 +19,17 @@ table.table
     th ディスプレイ
     th 面談室１，２
   tr
+    td 回数 / 回
     td = @AllFrequency
     - 6.times do |i|
       td = @logs.where(user_id: @user.id, place_id: i+1).count
-  tr 
+  tr
+    td 割合 / %
     td
     - 6.times do |i|
-      td = (@logs.where(user_id: @user.id, place_id: i+1).count.to_f/@AllFrequency.to_f*100).round(1)
-      
+      - rate = (@logs.where(user_id: @user.id, place_id: i+1).count.to_f/@AllFrequency.to_f*100).round(1)
+      - unless rate.nan? 
+        td = rate
 table.table
   tr
     th 日時
