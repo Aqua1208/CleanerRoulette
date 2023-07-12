@@ -5,7 +5,7 @@ class LogsController < ApplicationController
   end
 
   def create
-    cleaners = session[:cleaners]
+    cleaners = User.where.not(place_id: nil).order('place_id').pluck(:name)
     cleaners.length.times do |i|
       date = Date.today
       place = Place.find(i+1)

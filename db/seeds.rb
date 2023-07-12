@@ -1,24 +1,17 @@
-Place.create!(
-  id: 1,
-  name: '事業所全体',
-)
-Place.create!(
-  id: 2,
-  name: 'センターテーブル＋丸テーブル',
-)
-Place.create!(
-  id: 3,
-  name: 'ロッカー',
-)
-Place.create!(
-  id: 4,
-  name: '水やり',
-)
-Place.create!(
-  id: 5,
-  name: 'ディスプレイ',
-)
-Place.create!(
-  id: 6,
-  name: '面談室１，２',
-)
+Place.create!(name: '事業所全体',)
+Place.create!(name: 'センターテーブル＋丸テーブル',)
+Place.create!(name: 'ロッカー',)
+Place.create!(name: '水やり',)
+Place.create!(name: 'ディスプレイ',)
+Place.create!(name: '面談室１，２',)
+
+User.create!(name: 'Alice')
+User.create!(name: 'Bob')
+User.create!(name: 'Carol')
+User.create!(name: 'Dave')
+User.create!(name: 'Eve')
+User.create!(name: 'Frank')
+User.create!(name: 'Green')
+User.create!(name: 'Harris')
+User.create!(name: 'Issac')
+User.create!(name: 'Jesse')

@@ -3,14 +3,20 @@ class UsersController < ApplicationController
 
   def api
     places = Place.pluck(:name)
-    cleaners = session[:cleaners]
+    cleaners = User.where.not(place_id: nil).order('place_id').pluck(:name)
 
     render :json => { places: places, cleaners: cleaners }
   end
 
   def roulette
-    attendee = User.where(attend: true).pluck(:name)
-    session[:cleaners] = attendee.to_a.sample(6)
+    attendee = User.where(attend: true)
+    cleaners = attendee.to_a.sample(6)
+
+    User.update(place_id: nil)
+
+    cleaners.each.with_index do |cleaner, index|
+      User.find(cleaner.id).update(place_id: index + 1)
+    end
 
     redirect_to users_path
   end

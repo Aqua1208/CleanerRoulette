@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :furigana
       t.boolean :attend
+      t.integer :place_id
 
       t.timestamps
     end

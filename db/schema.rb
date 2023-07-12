@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_022452) do
     t.string "name"
     t.string "furigana"
     t.boolean "attend"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
