@@ -12,15 +12,17 @@ table.table
         td = i + 1
         td
           - if i == 0
-            = link_to Sweeper.find(Date.today.wday).name, place_path(i + 1)
+            = link_to Sweeper.find(Time.zone.today.wday).name, place_path(i + 1)
           - elsif i == 5
-            - if Date.today.day % 2 == 0
+            - if Time.zone.today.day % 2 == 0
               = link_to "面談室2", place_path(i + 1)
             - else
               = link_to "面談室1", place_path(i + 1)
           - else
             = link_to Place.find(i + 1).name, place_path(i + 1)
-        td = cleaner.name
+        td
+          - if cleaner.updated_at.day == Time.zone.today.day
+          = cleaner.name
 
 = render 'user'
 = link_to "新規作成", new_user_path
