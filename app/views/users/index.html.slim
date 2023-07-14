@@ -21,7 +21,7 @@ table.table
           - else
             = link_to Place.find(i + 1).name, place_path(i + 1)
         td
-          - if cleaner.updated_at.sec == Time.zone.now.sec
+          - if cleaner.updated_at.min == Time.zone.now.min
             = cleaner.name
 
 = render 'user'
