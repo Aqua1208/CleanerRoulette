@@ -21,8 +21,8 @@ table.table
           - else
             = link_to Place.find(i + 1).name, place_path(i + 1)
         td
-          - if cleaner.updated_at.day == Time.zone.today.day
-          = cleaner.name
+          - if cleaner.updated_at.sec == Time.zone.now.sec
+            = cleaner.name
 
 = render 'user'
 = link_to "新規作成", new_user_path
