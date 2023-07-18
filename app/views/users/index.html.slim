@@ -1,34 +1,7 @@
 div.flex
-  = link_to "ルーレット", roulette_path, class: "btn btn-info"
-  = button_to "保存", logs_create_path, class: "btn btn-secondary"
+  div.flex.w-50
+    = button_to "ルーレット", roulette_path, method: :get, class: "btn btn-info roulette"
 
-div.flex
-  div.img
-    table.table
-      tr
-        th 番号
-        th 場所
-        th 氏名
-        - @users.where.not(place_id: nil).order('place_id').each.with_index do |cleaner, i|
-          tr
-            td = i + 1
-            td
-              - if i == 0
-                = link_to Sweeper.find(Time.current.wday).name, place_path(i + 1)
-              - elsif i == 5
-                - if Time.current.day % 2 == 0
-                  = link_to "面談室２", place_path(i + 1)
-                - else
-                  = link_to "面談室１", place_path(i + 1)
-              - else
-                = link_to Place.find(i + 1).name, place_path(i + 1)
-            td
-              - if cleaner.updated_at.strftime('%d%S') == Time.current.strftime('%d%S')
-                = cleaner.name
-
-    div.flex
-      = render 'user'
-
+  div.w-50
+    = render 'user'
     = link_to "新規作成", new_user_path
-
-  img src="/assets/sweeper.png" class="img"

@@ -3,7 +3,6 @@
       tr
         th 氏名
         th 出席
-        th 
       - User.all.order(furigana: :asc).each do |user|
         tr
           td = link_to user.name, user_path(user)

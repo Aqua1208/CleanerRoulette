@@ -8,7 +8,7 @@ class LogsController < ApplicationController
     cleaners = User.where.not(place_id: nil).order('place_id').pluck(:name)
     
     cleaners.length.times do |i|
-      date = Time.zone.today
+      date = Time.current
       place = Place.find(i+1)
       user = User.find_by(name: cleaners[i])
 

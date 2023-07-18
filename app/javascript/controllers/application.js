@@ -6,4 +6,14 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
+$(document).on('turbolinks:load', function() {
+  var scrollPosition = $('[data-scroll_position]').data('scroll_position');
+  if (scrollPosition) {
+    var target = $('#' + scrollPosition);
+    if (target.length) {
+      $(window).scrollTop(target.offset().top);
+    }
+  }
+});
+
 export { application }

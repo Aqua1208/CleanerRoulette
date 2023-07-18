@@ -1,0 +1,30 @@
+div.flex
+  img src="/assets/sweeper.png" class="img"
+  div.img
+    table.table
+      tr
+        th 番号
+        th 場所
+        td
+        th 氏名
+        - @users.where.not(place_id: nil).order('place_id').each.with_index do |cleaner, i|
+          tr
+            td = i + 1
+            td
+              - if i == 0
+                = link_to Sweeper.find(Time.current.wday).name, place_path(i + 1)
+              - elsif i == 5
+                - if Time.current.day % 2 == 0
+                  = link_to "面談室２", place_path(i + 1)
+                - else
+                  = link_to "面談室１", place_path(i + 1)
+              - else
+                = link_to Place.find(i + 1).name, place_path(i + 1)
+            td
+              div.spinner-border style="animation: spinner-border #{1.5}s; animation-delay: #{i*0.5}s;"
+                span.visually-hidden
+            td.appear-text style="animation: appear-text #{i*0.5+1.5}s;" = cleaner.name
+
+    div.flex
+      = button_to "保存", logs_create_path, class:"btn btn-secondary"
+      = link_to "戻る", users_path, class:"btn btn-primary"
