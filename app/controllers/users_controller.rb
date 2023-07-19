@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  protect_from_forgery with: :null_session, only: [:roulette]
 
   def api
     places = Place.pluck(:name)
+    places[0] = Sweeper.find(Time.current.wday).name
+    places[5] = "面談室 #{Time.current.day % 2 + 1}"
+
     cleaners = User.where.not(place_id: nil).order('place_id').pluck(:name)
     students = User.all.pluck(:name, :attend)
 

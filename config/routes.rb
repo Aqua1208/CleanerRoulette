@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
 
   get 'api' => 'users#api'
+  post '/api/roulette', to: 'users#roulette'
+
   get 'roulette' => 'users#roulette'
   post 'attend' => 'users#attend'
 
