@@ -8,9 +8,14 @@ class UsersController < ApplicationController
     places[5] = "面談室 #{Time.current.day % 2 + 1}"
 
     cleaners = User.where.not(place_id: nil).order('place_id').pluck(:name)
-    students = User.all.pluck(:name, :attend)
 
-    render :json => { places: places, cleaners: cleaners, students: students }
+    users = User.all.order('Furigana').pluck(:id, :name, :attend, :rank_id) 
+
+    counts = Count.pluck(:user_id, :place_id, :count)
+
+    monthlyLogs = Log.where(date: Time.current.beginning_of_month..Time.current.end_of_month).pluck(:user_id, :place_id)
+
+    render :json => { places: places, cleaners: cleaners, users: users, counts: counts, monthlyLogs: monthlyLogs }
   end
 
   def roulette

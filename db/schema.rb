@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_062447) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_030315) do
   create_table "counts", force: :cascade do |t|
     t.integer "place_id", null: false
     t.integer "user_id", null: false
@@ -37,6 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_062447) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ranks", force: :cascade do |t|
+    t.string "name"
+    t.integer "trigger"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sweepers", force: :cascade do |t|
     t.string "name"
     t.string "day"
@@ -48,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_062447) do
     t.string "name"
     t.string "furigana"
     t.boolean "attend"
+    t.integer "rank_id"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

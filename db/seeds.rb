@@ -12,6 +12,12 @@ Sweeper.create!(name: '利用者エリア２', day: 'Thursday')
 Sweeper.create!(name: '利用者エリア３', day: 'Friday')
 Sweeper.create!(name: 'カフェエリア', day: 'Saturday')
 
+Rank.create!(name: 'ビギナー', trigger: 0)
+Rank.create!(name: 'アマチュア', trigger: 5)
+Rank.create!(name: 'エキスパート', trigger: 20)
+Rank.create!(name: 'プロ', trigger: 50)
+Rank.create!(name: '神', trigger: 100)
+
 User.create!(name: '藤永', furigana: 'ふじなが')
 User.create!(name: '中田',furigana: 'なかた')
 User.create!(name: '大高',furigana: 'おおたか')
